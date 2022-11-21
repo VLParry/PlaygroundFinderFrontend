@@ -25,8 +25,9 @@ const NavBar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} to="/" component= { Link }>
           Playground Finder
         </Typography>
-        <Button color="inherit" to="towns" component= { Link }>Choose your town</Button>
-        <Button color="inherit" to="playgrounds" component= { Link }>All Playgrounds</Button>
+        <Button color="inherit" to="towns" component= { Link }>Find by town</Button>
+        <br></br>
+        <Button color="inherit" to="addNew" component= { Link }>Add a new town or playground</Button>
       </Toolbar>
     </AppBar>
   </Box>

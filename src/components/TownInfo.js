@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PlaygroundCard from './PlaygroundCard';
-//returns the object of key value pairs of dynamic parameters from the current url
+//useParams returns the object of key value pairs of dynamic parameters from the current url
+
 const TownInfo = () => {
     const [townPlaygrounds, setTownPlaygrounds] = useState([])
     
@@ -20,20 +21,13 @@ const TownInfo = () => {
   
   
   }, [])
-
-//   const handleDelete = (id) => {
-//     const
-//   }
-  //function to take in id to find the id inside of town playgrounds and then delete it using settownplagrs array.splice
-  
-//   const nameMe = (id) => {
-  //const index = townPlaygrounds.findIndex((townPlayground) => townPlayground.id === id)
-
-//   const newPlaygrounds = [...townPlaygrounds].splice(index, 1);
-//   setTownPlaygrounds(newPlaygrounds);
-
-// }
-//pass this to playground card 
+//this function matches the playground to delete by id, makes a copy, and then splice removes it based off id and only deletes the one playground. Then pass the new playgrounds into state to update 
+  const handleDelete = (id) => {
+    const index = townPlaygrounds.findIndex((townPlayground) => townPlayground.id === id)
+    const newPlaygroundList = [...townPlaygrounds].splice(index, 1);
+    setTownPlaygrounds(newPlaygroundList)
+  }
+ 
   return (
 
     <div>
@@ -41,7 +35,12 @@ const TownInfo = () => {
       <h1>Playgrounds in {townName}</h1>
       <ul>
         {townPlaygrounds.map(playground => {
-            return <PlaygroundCard name={playground.name} address={playground.address} key={playground.id} />
+            return <PlaygroundCard 
+            name={playground.name} 
+            address={playground.address} 
+            handleDelete={handleDelete} 
+            id={playground.id}
+            key={playground.id} />
         })}
       </ul>
     </div>

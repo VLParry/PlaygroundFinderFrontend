@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Towns from "./components/Towns";
 import TownInfo from "./components/TownInfo";
-import Playgrounds from "./components/Playgrounds";
+import Form from "./components/Form";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/towns" element={<Towns />} />
-        <Route path="/playgrounds" element={<Playgrounds />} />
+        <Route path="/addNew" element={<Form />} />
         <Route path="/towns/:id/:townName" element={<TownInfo />} />
       </Routes>
       </Router>
