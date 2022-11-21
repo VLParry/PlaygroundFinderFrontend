@@ -1,40 +1,46 @@
 import React, {useState, useEffect} from 'react'
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 
+//confused about passing playground info down as props to use in my form values
+//state is only updating in name
+
 const Form = () => {
-  const [newTown, setNewTown] = useState({name: ""})
+
   const [newPlayground, setNewPlayground] = useState({
     name: "",
-    address: ""
+    address: "",
+    townName: ""
    })
 
+
+
+  const handlePlaygroundChange = (e) => {
+    const { name, value } = e.target
+    setNewPlayground((previousData) => ({
+      ...previousData,
+      [name] : value,
+    }));
+  }
+
+
+function handleSubmitPlayground(e) {
+  e.preventDefault();
+  fetch("http://localhost:9292/playgrounds", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPlayground),
+    })
+      .then((r) => r.json())
+}
+
   return (
-   <section>
-
-<h1>Add a Town</h1>
-    <form>
-    <p>
-<label>
-   Name:
-  <input 
-  type="text"
-  style={{width: '500px'}}
-  name="name"
-  // value={playground.name}
-  // onChange={handleChange}
-  />
-</label>
-</p>
-<Button type="submit" variant="contained" color="success">Add town</Button>
-
-
-
-
-    </form>
+  
+  <section>
     <h1>Add a playground</h1>
-    <form>
+    <form onSubmit={handleSubmitPlayground}>
     <p>
 <label>
   Playground Name:
@@ -43,7 +49,7 @@ const Form = () => {
   style={{width: '500px'}}
   name="name"
   // value={playground.name}
-  // onChange={handleChange}
+  onChange={handlePlaygroundChange}
   />
 </label>
 </p>
@@ -55,7 +61,7 @@ const Form = () => {
   style={{width: '500px'}}
   name="name"
   // value={playground.address}
-  // onChange={handleChange}
+  onChange={handlePlaygroundChange}
   />
 </label>
 </p>
@@ -67,13 +73,13 @@ const Form = () => {
   style={{width: '500px'}}
   name="name"
   // value={town.name}
-  // onChange={handleChange}
+  onChange={handlePlaygroundChange}
   />
 </label>
 </p>
-    </form>
+    
     <Button type="submit" variant="contained" color="success">Add Playground</Button>
-
+    </form>
    </section>
   )
 }

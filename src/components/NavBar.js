@@ -9,6 +9,8 @@ import IconButton from '@mui/material/IconButton';
 
 
 const NavBar = () => {
+
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
@@ -22,12 +24,12 @@ const NavBar = () => {
         >
           
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} to="/" component= { Link }>
+        <Typography color="inherit" variant="h6" component="div" sx={{ flexGrow: 1 }} to="/" component= { Link }>
           Playground Finder
         </Typography>
         <Button color="inherit" to="towns" component= { Link }>Find by town</Button>
         <br></br>
-        <Button color="inherit" to="addNew" component= { Link }>Add a new town or playground</Button>
+        <Button color="inherit" to="addNew" component= { Link }>Add a new Playground</Button>
       </Toolbar>
     </AppBar>
   </Box>

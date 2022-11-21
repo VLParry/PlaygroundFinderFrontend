@@ -1,8 +1,19 @@
+import { textAlign } from '@mui/system'
 import React from 'react'
 
 const Home = () => {
+const headingStyles = {
+  color: 'Turquoise',
+  textAlign: 'center'
+}
+
   return (
-    <div>Find local playgrounds easily. Share your favorite playrgounds if you don't see them on the list!</div>
+    <div>
+      <h1 style={headingStyles}>Find local playgrounds easily. <br></br>
+      Share your favorite playrgounds too!</h1>
+  
+
+      </div>
   )
 }
 

@@ -1,16 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
 
-const PlaygroundCard = ( { name, address, handleDelete}) => {
-  //delete fetch
-  // function handleDeleteClick(){
-  //   fetch(`http://localhost:9292/playgrounds/${playgrounds.id}`, {
-  //     method: "DELETE",
-  //   })
-  //   .then((r) => r.json())
-  //   .then((deletedPlayground) => handleDelete(deletedPlayground));
+
+const PlaygroundCard = ( {playgroundId, name, address, handleDelete}) => {
+  // delete fetch
+  //it doesnt know where ID is -  'id' is not defined
+  function handleDeleteClick(){
+    fetch(`http://localhost:9292/playgrounds/${playgroundId}`, {
+      method: "DELETE",
+    })
+    handleDelete(playgroundId);
    
-  // }
+  }
 
   return (
     <li>
@@ -21,8 +22,11 @@ const PlaygroundCard = ( { name, address, handleDelete}) => {
         {address}
       </address>
       <br></br>
-      {/* <button onClick={handleDeleteClick}>Delete Playground</button> */}
-      {/* <Link to={`/towns/`}>Back</Link>  */}
+      <Button type="submit" variant="contained" color="success" size="small">Edit Playground</Button>
+      <br></br>
+      <br></br>
+      <Button onClick={handleDeleteClick} variant="contained" color="success" size="small">Delete Playground</Button>
+   
     </li>
   )
 }

@@ -14,18 +14,13 @@ const TownInfo = () => {
         fetch(`http://localhost:9292/towns/${id}`)
         .then((r) => r.json())
         .then((town) => {
-          
          setTownPlaygrounds(town.playgrounds)
         });
-      
-  
-  
   }, [])
-//this function matches the playground to delete by id, makes a copy, and then splice removes it based off id and only deletes the one playground. Then pass the new playgrounds into state to update 
+
   const handleDelete = (id) => {
-    const index = townPlaygrounds.findIndex((townPlayground) => townPlayground.id === id)
-    const newPlaygroundList = [...townPlaygrounds].splice(index, 1);
-    setTownPlaygrounds(newPlaygroundList)
+const updatedPlaygrounds = townPlaygrounds.filter((deletedPlayground) => deletedPlayground.id !== id);
+setTownPlaygrounds(updatedPlaygrounds)
   }
  
   return (
@@ -39,7 +34,7 @@ const TownInfo = () => {
             name={playground.name} 
             address={playground.address} 
             handleDelete={handleDelete} 
-            id={playground.id}
+            playgroundId={playground.id}
             key={playground.id} />
         })}
       </ul>
