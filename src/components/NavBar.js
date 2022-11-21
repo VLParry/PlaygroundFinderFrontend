@@ -26,6 +26,7 @@ const NavBar = () => {
           Playground Finder
         </Typography>
         <Button color="inherit" to="towns" component= { Link }>Choose your town</Button>
+        <Button color="inherit" to="playgrounds" component= { Link }>All Playgrounds</Button>
       </Toolbar>
     </AppBar>
   </Box>

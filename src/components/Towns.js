@@ -1,9 +1,13 @@
 
 import React, {useState, useEffect} from 'react'
-import TownContainer from './TownContainer'
+import TownCard from './TownCard'
+import { Link } from 'react-router-dom'
+
+// import PlaygroundCard from './PlaygroundCard'
 
 const Towns = () => {
     const [towns, setTowns] = useState([])
+    
     
     useEffect(() => {
         fetch("http://localhost:9292/towns")
@@ -12,12 +16,16 @@ const Towns = () => {
             setTowns(data);
           });
       }, []);
+
+  
   
     return (
     <div>
         {towns.map(town => (
-            <TownContainer key={town.id} name={town.name} />
+            <TownCard key={town.id} name={town.name} id={town.id} />
         ))}
+
+
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Towns from "./components/Towns";
+import TownInfo from "./components/TownInfo";
 import Playgrounds from "./components/Playgrounds";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/towns" element={<Towns />} />
         <Route path="/playgrounds" element={<Playgrounds />} />
+        <Route path="/towns/:id/:townName" element={<TownInfo />} />
       </Routes>
       </Router>
   );
