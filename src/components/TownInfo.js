@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import PlaygroundCard from './PlaygroundCard';
+import PlaygroundForm from './PlaygroundForm';
 //useParams returns the object of key value pairs of dynamic parameters from the current url
 
 const TownInfo = () => {
@@ -23,6 +24,11 @@ const updatedPlaygrounds = townPlaygrounds.filter((deletedPlayground) => deleted
 setTownPlaygrounds(updatedPlaygrounds)
   }
  
+  const handleAddPlayground = (playground) => {
+    const newPlayground = [...townPlaygrounds, playground]
+    setTownPlaygrounds(newPlayground)
+  }
+
   return (
 
     <div>
@@ -38,6 +44,14 @@ setTownPlaygrounds(updatedPlaygrounds)
             key={playground.id} />
         })}
       </ul>
+      
+      <PlaygroundForm  
+     
+      // name={playground.name} 
+      // address={playground.address}
+      // playgroundId={playground.id}
+      handleAddPlayground={handleAddPlayground} 
+      />
     </div>
   )
 }

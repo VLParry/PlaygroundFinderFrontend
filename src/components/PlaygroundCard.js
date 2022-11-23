@@ -1,10 +1,9 @@
-import React from 'react'
+import {useState} from 'react'
 import Button from '@mui/material/Button';
 
 
 const PlaygroundCard = ( {playgroundId, name, address, handleDelete}) => {
   // delete fetch
-  //it doesnt know where ID is -  'id' is not defined
   function handleDeleteClick(){
     fetch(`http://localhost:9292/playgrounds/${playgroundId}`, {
       method: "DELETE",
@@ -12,6 +11,35 @@ const PlaygroundCard = ( {playgroundId, name, address, handleDelete}) => {
     handleDelete(playgroundId);
    
   }
+
+//   const [newPlayground, setNewPlayground] = useState({
+//     name: "",
+//     address: "",
+//     townName: ""
+//    })
+
+
+
+//   const handlePlaygroundChange = (e) => {
+//     const { name, value } = e.target
+//     setNewPlayground((previousData) => ({
+//       ...previousData,
+//       [name] : value,
+//     }));
+//   }
+
+
+// function handleSubmitPlayground(e) {
+//   e.preventDefault();
+//   fetch("http://localhost:9292/playgrounds", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(newPlayground)
+//       })
+// }
+
 
   return (
     <li>
@@ -28,6 +56,7 @@ const PlaygroundCard = ( {playgroundId, name, address, handleDelete}) => {
       <Button onClick={handleDeleteClick} variant="contained" color="success" size="small">Delete Playground</Button>
    
     </li>
+    
   )
 }
 

@@ -2,16 +2,16 @@
 import React, {useState, useEffect} from 'react'
 import TownCard from './TownCard'
 import Button from '@mui/material/Button';
-import {  useNavigate } from 'react-router-dom';
+// import {  useNavigate } from 'react-router-dom';
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 
 const Towns = () => {
     const [towns, setTowns] = useState([])
     const [newTown, setNewTown] = useState({name: ""})
     
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     useEffect(() => {
         fetch("http://localhost:9292/towns")
@@ -29,6 +29,12 @@ const Towns = () => {
         }));
       }
 
+       const postTown = (town) => {
+         const newTownArr = [...towns, town]
+        setTowns(newTownArr)
+      setNewTown({name: ""})
+      }
+
       function handleSubmitTown(e) {
         e.preventDefault();
         fetch("http://localhost:9292/towns", {
@@ -36,10 +42,17 @@ const Towns = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(newTown),
+          body: JSON.stringify({
+            name: newTown.name,
           })
-          .then(() => navigate('/towns'))
+          })
+          .then((r) => r.json())
+          .then((addedTown) => {
+              postTown(addedTown)
+
+          })
       }
+   
   
     return (
     <div>

@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Button from '@mui/material/Button';
 
 
-//confused about passing playground info down as props to use in my form values
+//confused about passing handleAddPlayGround  down to use in my post fetch
 //state is only updating in name
 
-const Form = () => {
+const PlaygroundForm = ( {handleAddPlayGround} ) => {
 
   const [newPlayground, setNewPlayground] = useState({
     name: "",
     address: "",
-    townName: ""
+    // townName: ""
    })
 
 
@@ -31,9 +31,17 @@ function handleSubmitPlayground(e) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newPlayground),
-    })
+      body: JSON.stringify({
+        // townName: ,
+        // name: name,
+        // address: address,
+      }),
+      })
       .then((r) => r.json())
+      .then((addedPlayground) => {
+        handleAddPlayGround(addedPlayground);
+        newPlayground("");
+      })
 }
 
   return (
@@ -41,6 +49,7 @@ function handleSubmitPlayground(e) {
   <section>
     <h1>Add a playground</h1>
     <form onSubmit={handleSubmitPlayground}>
+   
     <p>
 <label>
   Playground Name:
@@ -48,35 +57,25 @@ function handleSubmitPlayground(e) {
   type="text"
   style={{width: '500px'}}
   name="name"
-  // value={playground.name}
+  value={newPlayground.name}
   onChange={handlePlaygroundChange}
   />
 </label>
 </p>
+
 <p>
 <label>
   Playground Address:
   <input 
   type="text"
   style={{width: '500px'}}
-  name="name"
-  // value={playground.address}
+  name="address"
+  value={newPlayground.address}
   onChange={handlePlaygroundChange}
   />
 </label>
 </p>
-<p>
-<label>
-  Town Name:
-  <input 
-  type="text"
-  style={{width: '500px'}}
-  name="name"
-  // value={town.name}
-  onChange={handlePlaygroundChange}
-  />
-</label>
-</p>
+
     
     <Button type="submit" variant="contained" color="success">Add Playground</Button>
     </form>
@@ -84,4 +83,4 @@ function handleSubmitPlayground(e) {
   )
 }
 
-export default Form
+export default PlaygroundForm
