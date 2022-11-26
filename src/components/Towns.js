@@ -49,8 +49,7 @@ const Towns = () => {
           .then((r) => r.json())
           .then((addedTown) => {
               postTown(addedTown)
-
-          })
+           })
       }
    
   

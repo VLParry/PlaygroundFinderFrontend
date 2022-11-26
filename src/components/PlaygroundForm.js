@@ -5,12 +5,12 @@ import Button from '@mui/material/Button';
 //confused about passing handleAddPlayGround  down to use in my post fetch
 //state is only updating in name
 
-const PlaygroundForm = ( {handleAddPlayGround} ) => {
+const PlaygroundForm = ( {handleAddPlayground, townId} ) => {
 
   const [newPlayground, setNewPlayground] = useState({
     name: "",
     address: "",
-    // townName: ""
+  
    })
 
 
@@ -32,15 +32,20 @@ function handleSubmitPlayground(e) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // townName: ,
-        // name: name,
-        // address: address,
+        town_id: townId,
+        name: newPlayground.name,
+        address: newPlayground.address,
       }),
       })
       .then((r) => r.json())
       .then((addedPlayground) => {
-        handleAddPlayGround(addedPlayground);
-        newPlayground("");
+        handleAddPlayground(addedPlayground);
+      // console.log(addedPlayground)
+      setNewPlayground({
+        name: "",
+        address: "",
+      
+       })
       })
 }
 

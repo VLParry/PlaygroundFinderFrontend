@@ -28,7 +28,7 @@ setTownPlaygrounds(updatedPlaygrounds)
     const newPlayground = [...townPlaygrounds, playground]
     setTownPlaygrounds(newPlayground)
   }
-
+console.log(townPlaygrounds)
   return (
 
     <div>
@@ -50,6 +50,7 @@ setTownPlaygrounds(updatedPlaygrounds)
       // name={playground.name} 
       // address={playground.address}
       // playgroundId={playground.id}
+      townId={id}
       handleAddPlayground={handleAddPlayground} 
       />
     </div>
