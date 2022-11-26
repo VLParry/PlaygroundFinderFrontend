@@ -2,18 +2,12 @@ import React, {useState} from 'react'
 import Button from '@mui/material/Button';
 
 
-//confused about passing handleAddPlayGround  down to use in my post fetch
-//state is only updating in name
-
 const PlaygroundForm = ( {handleAddPlayground, townId} ) => {
 
   const [newPlayground, setNewPlayground] = useState({
     name: "",
     address: "",
-  
    })
-
-
 
   const handlePlaygroundChange = (e) => {
     const { name, value } = e.target
@@ -22,7 +16,6 @@ const PlaygroundForm = ( {handleAddPlayground, townId} ) => {
       [name] : value,
     }));
   }
-
 
 function handleSubmitPlayground(e) {
   e.preventDefault();
@@ -40,11 +33,9 @@ function handleSubmitPlayground(e) {
       .then((r) => r.json())
       .then((addedPlayground) => {
         handleAddPlayground(addedPlayground);
-      // console.log(addedPlayground)
       setNewPlayground({
         name: "",
         address: "",
-      
        })
       })
 }

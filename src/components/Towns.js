@@ -44,12 +44,13 @@ const Towns = () => {
             },
           body: JSON.stringify({
             name: newTown.name,
-          })
+          }),
           })
           .then((r) => r.json())
           .then((addedTown) => {
-              postTown(addedTown)
+              postTown(addedTown);
            })
+        console.log("hey")
       }
    
   
@@ -57,6 +58,7 @@ const Towns = () => {
     <div>
 
 <h1>List of Towns</h1>
+<h2>Click a town to see playgrounds</h2>
         {towns.map(town => (
             <TownCard key={town.id} name={town.name} id={town.id} />
         ))}

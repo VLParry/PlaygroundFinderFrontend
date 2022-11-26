@@ -23,7 +23,19 @@ const TownInfo = () => {
 const updatedPlaygrounds = townPlaygrounds.filter((deletedPlayground) => deletedPlayground.id !== id);
 setTownPlaygrounds(updatedPlaygrounds)
   }
- 
+
+ const editPlayground = (playground) => {
+  const foundPlaygroundIndex = townPlaygrounds.findIndex((park) => {
+    return park.id === playground.id
+  })
+  
+  const newPlaygrounds = townPlaygrounds
+  newPlaygrounds.splice(foundPlaygroundIndex, 1, playground)
+  setTownPlaygrounds(newPlaygrounds)
+ }
+//splice takes the array we copied and it takes the index where we want to start splice and replaces the info with the new playground info
+
+
   const handleAddPlayground = (playground) => {
     const newPlayground = [...townPlaygrounds, playground]
     setTownPlaygrounds(newPlayground)
@@ -40,16 +52,13 @@ console.log(townPlaygrounds)
             name={playground.name} 
             address={playground.address} 
             handleDelete={handleDelete} 
+            onEdit={editPlayground}
             playgroundId={playground.id}
             key={playground.id} />
         })}
       </ul>
       
       <PlaygroundForm  
-     
-      // name={playground.name} 
-      // address={playground.address}
-      // playgroundId={playground.id}
       townId={id}
       handleAddPlayground={handleAddPlayground} 
       />
