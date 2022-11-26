@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 
 
 const PlaygroundCard = ( {playgroundId, name, address, handleDelete}) => {
-const [playgroundInfo,setPlaygroundInfo] = useState({})
+// const [playgroundInfo,setPlaygroundInfo] = useState({})
 
   // delete fetch
   function handleDeleteClick(){
