@@ -2,16 +2,16 @@
 import React, {useState, useEffect} from 'react'
 import TownCard from './TownCard'
 import Button from '@mui/material/Button';
-// import {  useNavigate } from 'react-router-dom';
 
-// import { Link } from 'react-router-dom'
+
+
 
 
 const Towns = () => {
     const [towns, setTowns] = useState([])
     const [newTown, setNewTown] = useState({name: ""})
     
-    // const navigate = useNavigate()
+
 
     useEffect(() => {
         fetch("http://localhost:9292/towns")
