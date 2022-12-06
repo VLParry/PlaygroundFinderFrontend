@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const TownCard = ( {name, id} ) => {
   return (
     <div>
-     <Link to={`/towns/${id}/${name}`}>{name}</Link> 
+     <Link to={`/towns/${id}`}>{name}</Link> 
     
     </div>
   )

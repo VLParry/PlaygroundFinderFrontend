@@ -29,7 +29,7 @@ const NavBar = () => {
         </Typography>
         <Button color="inherit" to="towns" component= { Link }>Browse by town</Button>
         <br></br>
-        <Button color="inherit" to="allPlaygrounds" component= { Link }>Full Playground List</Button>
+        {/* <Button color="inherit" to="allPlaygrounds" component= { Link }>Full Playground List</Button> */}
       </Toolbar>
     </AppBar>
   </Box>

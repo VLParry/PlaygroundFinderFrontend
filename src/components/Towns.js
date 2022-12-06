@@ -7,19 +7,19 @@ import Button from '@mui/material/Button';
 
 
 
-const Towns = () => {
-    const [towns, setTowns] = useState([])
+const Towns = ( {allTowns, setTowns}) => {
+    // const [towns, setTowns] = useState([])
     const [newTown, setNewTown] = useState({name: ""})
     
+console.log(allTowns)
 
-
-    useEffect(() => {
-        fetch("http://localhost:9292/towns")
-          .then((r) => r.json())
-          .then((data) => {
-            setTowns(data);
-          });
-      }, []);
+    // useEffect(() => {
+    //     fetch("http://localhost:9292/towns")
+    //       .then((r) => r.json())
+    //       .then((data) => {
+    //         setTowns(data);
+    //       });
+    //   }, []);
 
       const handleTownChange = (e) => {
         const { name, value } = e.target
@@ -30,7 +30,7 @@ const Towns = () => {
       }
 
        const postTown = (town) => {
-         const newTownArr = [...towns, town]
+         const newTownArr = [...allTowns, town]
         setTowns(newTownArr)
       setNewTown({name: ""})
       }
@@ -50,7 +50,6 @@ const Towns = () => {
           .then((addedTown) => {
               postTown(addedTown);
            })
-        console.log("hey")
       }
    
   
@@ -59,7 +58,7 @@ const Towns = () => {
 
 <h1>List of Towns</h1>
 <h2>Click a town to see playgrounds</h2>
-        {towns.map(town => (
+        {allTowns.map(town => (
             <TownCard key={town.id} name={town.name} id={town.id} />
         ))}
 
