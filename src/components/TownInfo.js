@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import {  useParams } from 'react-router-dom'
 import PlaygroundCard from './PlaygroundCard';
 import PlaygroundForm from './PlaygroundForm';
 //useParams returns the object of key value pairs of dynamic parameters from the current url
 
-const TownInfo = ({allTowns}) => {
-    const [townPlaygrounds, setTownPlaygrounds] = useState([])
- 
-    
-    const {id}=useParams()
+const TownInfo = ({allTowns, townPlaygrounds, setTownPlaygrounds, setTowns}) => {
+const {id}=useParams()
 
-    console.log(allTowns)
-//removed the townName param as Nancy said it was not a restful route
+let singleTown= useRef({});
+
 useEffect(()=>
-{const singleTown = allTowns.find((oneTown) => oneTown.id == id)
-  setTownPlaygrounds(singleTown?.playgrounds)
-},[allTowns, id])
+  {singleTown.current = allTowns.find((oneTown) => oneTown.id == id)
+  setTownPlaygrounds(singleTown.current?.playgrounds)
+},[allTowns, id, setTownPlaygrounds])
 
-  // useEffect(() => {
-    
-  //       fetch(`http://localhost:9292/towns/${id}`)
-  //       .then((r) => r.json())
-  //       .then((town) => {
-  //        setTownPlaygrounds(town.playgrounds)
-  //       });
-  // }, [])
-
-  const handleDelete = (id) => {
-const updatedPlaygrounds = townPlaygrounds.filter((deletedPlayground) => deletedPlayground.id !== id);
-setTownPlaygrounds(updatedPlaygrounds)
+const handleDelete = (id) => {
+  const updatedPlaygrounds = townPlaygrounds.filter((deletedPlayground) =>    deletedPlayground.id !== id);
+    const updatedTown = {...singleTown.current, playgrounds: updatedPlaygrounds}
+    const updatedTowns = allTowns.map((town) => town.id === updatedTown.id ? updatedTown : town)
+    setTownPlaygrounds(updatedPlaygrounds)
+    setTowns(updatedTowns)
   }
 
  const editPlayground = (playground) => {
@@ -36,23 +27,23 @@ setTownPlaygrounds(updatedPlaygrounds)
     return park.id === playground.id
   })
   
-  const newPlaygrounds = townPlaygrounds
+const newPlaygrounds = townPlaygrounds
   newPlaygrounds.splice(foundPlaygroundIndex, 1, playground)
   setTownPlaygrounds(newPlaygrounds)
  }
 //splice takes the array we copied and it takes the index where we want to start splice and replaces the info with the new playground info
 
-console.log(townPlaygrounds)
-  const handleAddPlayground = (playground) => {
-    const newPlayground = [...townPlaygrounds, playground]
-    setTownPlaygrounds(newPlayground)
-  }
-console.log(townPlaygrounds)
-  return (
+  const handleAddPlayground = (playground, id) => {
 
+    const newPlaygrounds = [...townPlaygrounds, playground]
+    const updatedTown = {...singleTown.current, playgrounds: newPlaygrounds}
+    const updatedTowns = allTowns.map((town) => town.id === updatedTown.id ? updatedTown : town)
+    setTowns(updatedTowns)
+    setTownPlaygrounds(newPlaygrounds)
+  }
+
+  return (
     <div>
-       
-      {/* <h1>Playgrounds in {townName}</h1> */}
       <ul>
         {townPlaygrounds?.map(playground => {
             return <PlaygroundCard 

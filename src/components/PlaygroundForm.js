@@ -8,7 +8,7 @@ const PlaygroundForm = ( {handleAddPlayground, townId} ) => {
     name: "",
     address: "",
    })
-   console.log(townId)
+ 
   const handlePlaygroundChange = (e) => {
     const { name, value } = e.target
     setNewPlayground((previousData) => ({
@@ -32,7 +32,7 @@ function handleSubmitPlayground(e) {
       })
       .then((r) => r.json())
       .then((addedPlayground) => {
-        handleAddPlayground(addedPlayground);
+        handleAddPlayground(addedPlayground, townId);
       setNewPlayground({
         name: "",
         address: "",

@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 const PlaygroundCard = ( {playgroundId, name, address, handleDelete, onEdit}) => {
 const [playgroundInfo,setPlaygroundInfo] = useState({name, address})
 //{name, address} is the same as {name: name, address: address}
-//props passes in name and address and were setting that into state which we then pass into our input value
+//props passes in name and address and we're setting that into state which we then pass into our input value
 
 const [isEditing, setIsEditing] = useState(false)
 

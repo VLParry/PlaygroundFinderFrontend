@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import TownCard from './TownCard'
 import Button from '@mui/material/Button';
 
@@ -8,19 +8,9 @@ import Button from '@mui/material/Button';
 
 
 const Towns = ( {allTowns, setTowns}) => {
-    // const [towns, setTowns] = useState([])
+
     const [newTown, setNewTown] = useState({name: ""})
     
-console.log(allTowns)
-
-    // useEffect(() => {
-    //     fetch("http://localhost:9292/towns")
-    //       .then((r) => r.json())
-    //       .then((data) => {
-    //         setTowns(data);
-    //       });
-    //   }, []);
-
       const handleTownChange = (e) => {
         const { name, value } = e.target
         setNewTown((previousData) => ({
@@ -32,7 +22,7 @@ console.log(allTowns)
        const postTown = (town) => {
          const newTownArr = [...allTowns, town]
         setTowns(newTownArr)
-      setNewTown({name: ""})
+         setNewTown({name: ""})
       }
 
       function handleSubmitTown(e) {
@@ -78,7 +68,6 @@ console.log(allTowns)
 </p>
 <Button type="submit" variant="contained" color="success">Add town</Button>
 </form>
-
     </div>
   )
 }
