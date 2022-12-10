@@ -5,7 +5,10 @@ import PlaygroundForm from './PlaygroundForm';
 //useParams returns the object of key value pairs of dynamic parameters from the current url
 
 const TownInfo = ({allTowns, townPlaygrounds, setTownPlaygrounds, setTowns}) => {
-const {id}=useParams()
+
+console.log(allTowns)
+
+  const {id}=useParams()
 
 let singleTown= useRef({});
 

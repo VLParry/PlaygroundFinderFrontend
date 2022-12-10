@@ -20,7 +20,8 @@ const Towns = ( {allTowns, setTowns}) => {
       }
 
        const postTown = (town) => {
-         const newTownArr = [...allTowns, town]
+        const newTown = {...town, playgrounds:[]}
+         const newTownArr = [...allTowns, newTown]
         setTowns(newTownArr)
          setNewTown({name: ""})
       }
